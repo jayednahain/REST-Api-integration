@@ -29,27 +29,33 @@ def contact_list(request):
       return Response(de_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
-api_view(['GET','PUT','DELETE'])
+
+
+
+@api_view(['GET','PUT','DELETE'])
 def contact_detail(request,pk):
    try:
-      contact = ContactList.objects.get(pk=pk)
-   except contact.DoesNotExist:
+      contact = ContactList.objects.get(pk=pk) # getting singel student !
+   except ContactList.DoesNotExist:
       return Response(status=status.HTTP_404_NOT_FOUND)
 
+   #handle the request !
 
    if request.method =='GET':
-      serializer = ContactListSerializer(contact)
-      return Response(serializer.data)
+      serializer = ContactListSerializer(contact) #we have already take the student as a object at friest ! now pass it through the serializer !
+      return  Response(serializer.data)
 
-   elif request.method == 'PUT':
-      serializer = ContactListSerializer(contact,data=request.data)
-      if serializer.is_valid():
-         serializer.save()
+   elif request.method =='PUT': #put for update operation !
+
+      serializer= ContactListSerializer(contact,data=request.data) #take the data we want to change ! and overwrite it
+      if serializer.is_valid(): #if the data we want to change is valled !
+         serializer.save() # and save it
          return Response(serializer.data)
-      return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+      return  Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+
 
    elif request.method =='DELETE':
       contact.delete()
-      return Response(status=status.HTTP_204_NO_CONTENT)
-
-
+      return  Response(status=status.HTTP_204_NO_CONTENT)
