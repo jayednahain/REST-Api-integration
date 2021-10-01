@@ -5,10 +5,10 @@ import json
 
 
 
-option = webdriver.ChromeOptions()
-option.add_argument(r'--user-data-dir=C:\Users\Jayed Nahian\AppData\Local\Google\Chrome\User Data\Default')
-option.add_argument('--profile-directory=Default')
-driver = webdriver.Chrome(executable_path='WebDriver/chromedriver.exe',options=option)
+# option = webdriver.ChromeOptions()
+# option.add_argument(r'--user-data-dir=C:\Users\Jayed Nahian\AppData\Local\Google\Chrome\User Data\Default')
+# option.add_argument('--profile-directory=Default')
+driver = webdriver.Chrome(executable_path='WebDriver/chromedriver.exe')
 whats_app_path = 'https://web.whatsapp.com/'
 driver.get(whats_app_path)
 
