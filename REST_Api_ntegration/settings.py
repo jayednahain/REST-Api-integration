@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE':'django.db.backends.mysql',
         'NAME':'ContactLlist_DB',
         'USER':'root',
-        'PASSWORD':'test'
+        'PASSWORD':'####'
     }
 }
 
